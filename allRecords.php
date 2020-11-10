@@ -41,7 +41,7 @@ $classname="odd";
 ?>
 <tr class="<?php if(isset($classname)) echo $classname;?>">
 <td><?php echo $row['Client_Name']; ?></td>
-<td><?php echo $row['CAddress']; ?></td>
+<td><?php echo $row['Address']; ?></td>
 <td><?php echo $row['Age']; ?></td>
 <td><?php echo $row['Gender']; ?></td>
 <td><?php echo $row['ContactNo']; ?></td>

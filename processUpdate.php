@@ -8,16 +8,32 @@
   {
         exit('Failed to connect to MySQL: ' . mysqli_connect_error());
   }
-if(count($_POST)>0)
-{
-mysqli_query($link,"UPDATE tblclient set Client_Name='" . $_POST['txtName'] . "', CAddress='" .
-$_POST['txtAddress'] . "', Age='" . $_POST['txtAge'] . "', Gender=" . $_POST['txtGender'] . "
-,ContactNo='" . $_POST['txtConNo'] . "', CStatus='" . $_POST['txtStatus'] . "' WHERE CLID=" .
-$_POST['txtCLID'] . "");
-$message = "Record Modified Successfully";
+
+if(isset($_POST['txtCLID'])){
+      if(count($_POST)>0)
+      {
+      $update = mysqli_query($link,"UPDATE tblclient SET Client_Name='" . $_POST['txtName'] . "' , Address='" .
+      $_POST['txtAddress'] . "', Age='" . $_POST['txtAge'] . "', Gender='" . $_POST['txtGender'] . "'
+      ,ContactNo='" . $_POST['txtConNo'] . "', CStatus='" . $_POST['txtStatus'] . "' WHERE CLID='" .
+      $_POST['txtCLID'] . "'");
+      var_dump($update);
+      if (!$update) {
+            printf("Error: %s\n", mysqli_error($link));
+            exit();
+        }else{
+            $message = "Record Modified Successfully";
+        }
+      }
 }
-$result = mysqli_query($link,"SELECT * FROM tblclient WHERE CLID=" . $_GET['CLID'] . "");
-$row= mysqli_fetch_array($result);
+$clid = $_GET['CLID'];
+$result = mysqli_query($link,"SELECT * FROM tblclient WHERE CLID = '". $clid . "'");
+if (!$result) {
+      print($_GET['CLID']);
+      printf("Error: %s\n", mysqli_error($link));
+      exit();
+  }else{
+      $row= mysqli_fetch_array($result);
+  }
 ?>
 <html>
 <head>
@@ -27,7 +43,7 @@ $row= mysqli_fetch_array($result);
 <body>
 <div class="login">
        <h1>Edit Client List</h1>
-<form name="frmUser" method="post" action="">
+<form name="frmUser" method="post" action="#">
 <?php
 if(isset($message))
 {
@@ -42,7 +58,7 @@ if(isset($message))
 <label for="city">
 <i class="fas fa-user">City</i>
 </label>
-<input type="text" name="txtAddress" class="txtField" value="<?php echo $row['CAddress']; ?>">
+<input type="text" name="txtAddress" class="txtField" value="<?php echo $row['Address']; ?>">
 <label for="age">
 <i class="fas fa-user">Age</i>
 </label>
