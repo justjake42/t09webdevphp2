@@ -16,8 +16,9 @@ $eeVAT = mysqli_real_escape_string($link, $_REQUEST['txteVAT']);
 $eNetCost = mysqli_real_escape_string($link, $_REQUEST['txtNetCost']);
 $eCENo = mysqli_real_escape_string($link, $_REQUEST['txtCENo']);
 $eCLID = mysqli_real_escape_string($link, $_REQUEST['txtCLID']);
-$sql = "INSERT INTO tbltransaction (txtTRNo,txtTDate,txtSubTotal,txtProFee,txteVAT,txtNetCost,txtCENo,txtCLID)
+$sql = "INSERT INTO tbltransaction (TRNo,TDate,SubTotal,ProFee,eVAT,NetCost,CENo,CLID)
 VALUES ('$eTRNo', '$eTDate','$eSubTotal','$eProFee','$eeVAT','$eNetCost', '$eCENo', '$eCLID')";
+
 if(mysqli_query($link, $sql))
 {
     echo "Records added successfully.";
