@@ -7,16 +7,16 @@ $link = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE
 { exit('Failed to connect to MySQL: ' . mysqli_connect_error()); }
      if(isset($_POST['btnsearch']))
      {
-          $toSearch = $_POST['txtName'];
-          $query = mysqli_query($link,"Select * from `tblclient` where CONCAT
-(`Client_Name`,`CAddress`,`Age`,`Gender`,`ContactNo`,`CStatus`) LIKE '%" .$toSearch. "%'");
+          $toSearch = $_POST['txtTRN'];
+          $query = mysqli_query($link,"Select * from `tbltransaction` where CONCAT
+(`TRNo`,`TDate`,`SubTotal`,`ProFee`,`eVAT`,`NetCost`,`CENo`,`CLID`) LIKE '%" .$toSearch. "%'");
 } else {
-         $query = mysqli_query($link,"SELECT * FROM tblclient");
+         $query = mysqli_query($link,"SELECT * FROM tbltransaction");
      }
 ?>
 <html>
 <head>
-<link rel="stylesheet" href="mystyle_copy2.css">
+<link rel="stylesheet" href="mystyle_copy.css">
 <title>Seach and Delete</title>
 </head>
 <body>
@@ -24,31 +24,33 @@ $link = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE
 <table>
 <tr>
 <td colspan="7">
-SEARCH HERE: <input type="text" name="txtName" placeholder="Enter Client Name" id="plateno" required>
+SEARCH HERE: <input type="text" name="txtTRN" placeholder="Enter TRN" id="plateno" required>
 <input type="submit" value="SUBMIT" name="btnsearch">
 </td>
 </tr>
 <tr>
-<th colspan="7">CLIENT LISTS</th>
+<th colspan="7">TRANSACTION LIST</th>
 </tr>
 <tr>
-         <th>Client Name</th>
-         <th>City</th>
-         <th>Age</th>
-         <th>Gender</th>
-         <th>Contact Number</th>
-         <th>Civil Status</th>
+         <th>Transaction Number</th>
+         <th>Transaction Date</th>
+         <th>SubTotal</th>
+         <th>ProFee</th>
+         <th>eVAT</th>
+         <th>NetCost</th>
          <th>Action</th>
 </tr>
 <?php while($row = mysqli_fetch_array($query)): ?>
 <tr>
-         <td><?php echo $row['Client_Name']; ?></td>
-         <td><?php echo $row['CAddress']; ?></td>
-         <td><?php echo $row['Age']; ?></td>
-         <td><?php echo $row['Gender']; ?></td>
-         <td><?php echo $row['ContactNo']; ?></td>
-         <td><?php echo $row['CStatus']; ?></td>
-         <td><a href="deleteProcess.php?CLID=<?php echo $row["CLID"]; ?>">Delete</a></td>
+         <td><?php echo $row['TRNo']; ?></td>
+         <td><?php echo $row['TDate']; ?></td>
+         <td><?php echo $row['SubTotal']; ?></td>
+         <td><?php echo $row['ProFee']; ?></td>
+         <td><?php echo $row['eVAT']; ?></td>
+         <td><?php echo $row['NetCost']; ?></td>
+         <!--<td><//?php echo $row['CENo']; ?></td>
+         <td><//?php echo $row['CLID']; ?></td>-->
+         <td><a href="deleteProcess.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
 </tr>
 <?php endwhile; ?>
 </table>
