@@ -11,10 +11,10 @@
 $cName = mysqli_real_escape_string($link, $_REQUEST['txtName']);
 $cAddress = mysqli_real_escape_string($link, $_REQUEST['txtAddress']);
 $cAge = mysqli_real_escape_string($link, $_REQUEST['txtAge']);
-$cGender = mysqli_real_escape_string($link, $_REQUEST['txtSex']);
+$cGender = mysqli_real_escape_string($link, $_REQUEST['txtGender']);
 $cContactNo = mysqli_real_escape_string($link, $_REQUEST['txtConNo']);
 $cStatus = mysqli_real_escape_string($link, $_REQUEST['txtStatus']);
-$sql = "INSERT INTO tblclient (Client_Name,Address,Age,Gender,ContactNo,CStatus) VALUES ('$cName', '$cAddress',
+$sql = "INSERT INTO tblclient (Client_Name,CAddress,Age,Gender,ContactNo,CStatus) VALUES ('$cName', '$cAddress',
 '$cAge','$cGender','$cContactNo','$cStatus')";
 if(mysqli_query($link, $sql))
 {

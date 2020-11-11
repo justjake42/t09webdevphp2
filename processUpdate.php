@@ -12,11 +12,11 @@
 if(isset($_POST['txtCLID'])){
       if(count($_POST)>0)
       {
-      $update = mysqli_query($link,"UPDATE tblclient SET Client_Name='" . $_POST['txtName'] . "' , Address='" .
+      $update = mysqli_query($link,"UPDATE tblclient SET Client_Name='" . $_POST['txtName'] . "' , CAddress='" .
       $_POST['txtAddress'] . "', Age='" . $_POST['txtAge'] . "', Gender='" . $_POST['txtGender'] . "'
       ,ContactNo='" . $_POST['txtConNo'] . "', CStatus='" . $_POST['txtStatus'] . "' WHERE CLID='" .
       $_POST['txtCLID'] . "'");
-      var_dump($update);
+      //var_dump($update);
       if (!$update) {
             printf("Error: %s\n", mysqli_error($link));
             exit();
@@ -58,7 +58,7 @@ if(isset($message))
 <label for="city">
 <i class="fas fa-user">City</i>
 </label>
-<input type="text" name="txtAddress" class="txtField" value="<?php echo $row['Address']; ?>">
+<input type="text" name="txtAddress" class="txtField" value="<?php echo $row['CAddress']; ?>">
 <label for="age">
 <i class="fas fa-user">Age</i>
 </label>
@@ -80,4 +80,3 @@ if(isset($message))
 </div>
 </body>
 </html>
-

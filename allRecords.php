@@ -13,21 +13,21 @@ $result = mysqli_query($link,"SELECT * FROM tblclient");
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="mystyle_copy.css">
+<link rel="stylesheet" href="mystyle_copy2.css">
 <title>Update employee data</title>
 </head>
 <body>
 <table border="1">
 <tr>
-<td colspan="7">CAR LISTS</td>
+<td colspan="7">CLIENT LIST<br><a href="insertRecord.php"> New Record</a></br></td>
 </tr>
 <tr>
-<td>Engine Number</td>
-<td>Car Model</td>
-<td>Car Brand</td>
-<td>Car Price</td>
-<td>Car Color</td>
-<td>Plate Number</td>
+<td>Client Name</td>
+<td>Client Address</td>
+<td>Age</td>
+<td>Gender</td>
+<td>Contact Number</td>
+<td>Civil Status</td>
 <td>Action</td>
 </tr>
 <?php
@@ -41,7 +41,7 @@ $classname="odd";
 ?>
 <tr class="<?php if(isset($classname)) echo $classname;?>">
 <td><?php echo $row['Client_Name']; ?></td>
-<td><?php echo $row['Address']; ?></td>
+<td><?php echo $row['CAddress']; ?></td>
 <td><?php echo $row['Age']; ?></td>
 <td><?php echo $row['Gender']; ?></td>
 <td><?php echo $row['ContactNo']; ?></td>
